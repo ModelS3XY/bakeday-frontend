@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Noto Sans TC', ui-sans-serif, system-ui, -apple-system, 'PingFang TC', sans-serif;
+  --color-cream: #faf6f1;
+  --color-latte: #e9dccf;
+  --color-roast-50: #f6efe9;
+  --color-roast-100: #eadbcd;
+  --color-roast-300: #c49a78;
+  --color-roast-500: #8b5e3c;
+  --color-roast-700: #5b3a29;
+  --color-roast-900: #2e1d14;
+}
+
+@layer base {
+  body {
+    @apply bg-cream text-roast-900 antialiased;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-roast-500;
+  }
+}
+
+/* Tailwind v4 用 @utility 定義可重複使用的樣式組合 */
+@utility btn {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-roast-700 text-white hover:bg-roast-900 active:scale-[0.98];
+}
+@utility btn-outline {
+  @apply btn border border-roast-300 text-roast-700 hover:border-roast-700 hover:bg-roast-50;
+}
+@utility input {
+  @apply w-full rounded-xl border border-roast-100 bg-white px-4 py-2.5 text-sm transition placeholder:text-roast-300 focus:border-roast-500 focus:ring-2 focus:ring-roast-100 focus:outline-none;
+}
+@utility container-page {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+}
