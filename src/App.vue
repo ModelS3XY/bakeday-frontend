@@ -1,6 +1,7 @@
 <script setup>
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppFooter from '@/components/layout/AppFooter.vue'
+import CartDrawer from '@/components/cart/CartDrawer.vue'
 import ToastList from '@/components/ui/ToastList.vue'
 </script>
 
@@ -12,5 +13,6 @@ import ToastList from '@/components/ui/ToastList.vue'
     </main>
     <AppFooter />
   </div>
+  <CartDrawer />
   <ToastList />
 </template>

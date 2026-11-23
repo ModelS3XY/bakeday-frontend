@@ -2,11 +2,13 @@
 import { computed, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useCartStore } from '@/stores/cart'
 import { useToastStore } from '@/stores/toast'
 import AuthCard from '@/components/auth/AuthCard.vue'
 import FormField from '@/components/auth/FormField.vue'
 
 const auth = useAuthStore()
+const cart = useCartStore()
 const toast = useToastStore()
 const router = useRouter()
 const route = useRoute()
@@ -41,6 +43,7 @@ async function submit() {
   submitting.value = true
   try {
     await auth.register({ name: form.name, email: form.email, password: form.password })
+    cart.fetch()
     toast.success('註冊成功，歡迎加入焙日！')
     router.replace(redirectTarget())
   } catch (e) {

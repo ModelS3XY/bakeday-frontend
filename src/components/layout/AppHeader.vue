@@ -2,10 +2,12 @@
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useCartStore } from '@/stores/cart'
 import { useToastStore } from '@/stores/toast'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 
 const auth = useAuthStore()
+const cart = useCartStore()
 const toast = useToastStore()
 const router = useRouter()
 const route = useRoute()
@@ -21,8 +23,19 @@ watch(() => route.fullPath, () => (menuOpen.value = false))
 
 function logout() {
   auth.logout()
+  cart.reset()
   toast.success('已登出')
   router.push({ name: 'home' })
+}
+
+function openCart() {
+  if (!auth.isLoggedIn) {
+    toast.info('請先登入會員才能查看購物車')
+    router.push({ name: 'login', query: { redirect: route.fullPath } })
+    return
+  }
+  cart.open = true
+  cart.fetch()
 }
 </script>
 
@@ -76,6 +89,22 @@ function logout() {
             <RouterLink :to="{ name: 'register' }" class="btn-primary hidden px-4! py-2! sm:inline-flex">註冊</RouterLink>
           </template>
         </template>
+
+        <button
+          type="button"
+          class="relative grid size-10 cursor-pointer place-items-center rounded-full transition hover:bg-roast-50"
+          :aria-label="`購物車，共 ${cart.cart.totalQty} 件`"
+          @click="openCart"
+        >
+          <BaseIcon name="cart" />
+          <span
+            v-if="cart.cart.totalQty"
+            :key="cart.cart.totalQty"
+            class="absolute -top-0.5 -right-0.5 grid min-w-5 animate-[pop_0.3s_ease-out] place-items-center rounded-full bg-roast-700 px-1 text-[11px] font-semibold text-white"
+          >
+            {{ cart.cart.totalQty > 99 ? '99+' : cart.cart.totalQty }}
+          </span>
+        </button>
       </div>
     </div>
 
@@ -103,3 +132,11 @@ function logout() {
     </Transition>
   </header>
 </template>
+
+<style>
+@keyframes pop {
+  0% { transform: scale(0.6); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+</style>

@@ -2,15 +2,21 @@
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { productApi } from '@/api'
+import { useCartStore } from '@/stores/cart'
+import { useAddToCart } from '@/composables/useAddToCart'
 import { formatPrice } from '@/utils/format'
+import QtyStepper from '@/components/ui/QtyStepper.vue'
 import StatusBlock from '@/components/ui/StatusBlock.vue'
 
 const route = useRoute()
+const cart = useCartStore()
+const addToCart = useAddToCart()
 
 const product = ref(null)
 const loading = ref(true)
 const error = ref('')
 const notFound = ref(false)
+const qty = ref(1)
 
 async function load() {
   loading.value = true
@@ -18,6 +24,7 @@ async function load() {
   notFound.value = false
   try {
     product.value = await productApi.get(route.params.id)
+    qty.value = 1
     document.title = `${product.value.name}｜焙日 Bakeday`
   } catch (e) {
     if (e.status === 404 || e.status === 400) notFound.value = true
@@ -29,6 +36,7 @@ async function load() {
 watch(() => route.params.id, load, { immediate: true })
 
 const soldOut = computed(() => product.value?.stock <= 0)
+const pending = computed(() => product.value && cart.isPending(product.value._id))
 </script>
 
 <template>
@@ -62,6 +70,14 @@ const soldOut = computed(() => product.value?.stock <= 0)
         <p class="mt-6 text-sm" :class="soldOut ? 'text-red-600' : 'text-roast-500'">
           {{ soldOut ? '目前已售完' : `庫存 ${product.stock} 件` }}
         </p>
+
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <QtyStepper v-model="qty" :max="Math.max(1, Math.min(99, product.stock))" :disabled="soldOut" />
+          <button type="button" class="btn-primary flex-1 sm:flex-none sm:px-10" :disabled="soldOut || pending" @click="addToCart(product, qty)">
+            <span v-if="pending" class="size-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+            {{ soldOut ? '已售完' : '加入購物車' }}
+          </button>
+        </div>
       </div>
     </article>
   </div>
