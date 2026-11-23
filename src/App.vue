@@ -1,5 +1,14 @@
+<script setup>
+import AppHeader from '@/components/layout/AppHeader.vue'
+import AppFooter from '@/components/layout/AppFooter.vue'
+</script>
+
 <template>
-  <main class="container-page grid min-h-dvh place-items-center">
-    <h1 class="text-3xl font-bold text-roast-700">焙日 Bakeday</h1>
-  </main>
+  <div class="flex min-h-dvh flex-col">
+    <AppHeader />
+    <main class="flex-1">
+      <RouterView />
+    </main>
+    <AppFooter />
+  </div>
 </template>
