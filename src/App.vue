@@ -1,6 +1,7 @@
 <script setup>
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppFooter from '@/components/layout/AppFooter.vue'
+import ToastList from '@/components/ui/ToastList.vue'
 </script>
 
 <template>
@@ -11,4 +12,5 @@ import AppFooter from '@/components/layout/AppFooter.vue'
     </main>
     <AppFooter />
   </div>
+  <ToastList />
 </template>

@@ -1,8 +1,13 @@
 <script setup>
 import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+import { useToastStore } from '@/stores/toast'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 
+const auth = useAuthStore()
+const toast = useToastStore()
+const router = useRouter()
 const route = useRoute()
 const menuOpen = ref(false)
 
@@ -13,6 +18,12 @@ const links = [
 
 // 換頁後自動收起手機選單
 watch(() => route.fullPath, () => (menuOpen.value = false))
+
+function logout() {
+  auth.logout()
+  toast.success('已登出')
+  router.push({ name: 'home' })
+}
 </script>
 
 <template>
@@ -47,6 +58,25 @@ watch(() => route.fullPath, () => (menuOpen.value = false))
           </li>
         </ul>
       </nav>
+
+      <div class="ml-auto flex items-center gap-2">
+        <template v-if="auth.ready">
+          <template v-if="auth.isLoggedIn">
+            <span class="hidden items-center gap-1.5 text-sm text-roast-700 sm:flex">
+              <BaseIcon name="user" size="size-4" />
+              {{ auth.user.name }}
+              <span v-if="auth.user.role === 'admin'" class="rounded bg-roast-700 px-1.5 py-0.5 text-[10px] text-white">管理員</span>
+            </span>
+            <button type="button" class="hidden cursor-pointer rounded-full px-3 py-2 text-sm text-roast-500 hover:bg-roast-50 hover:text-roast-900 sm:block" @click="logout">
+              登出
+            </button>
+          </template>
+          <template v-else>
+            <RouterLink :to="{ name: 'login' }" class="hidden rounded-full px-3 py-2 text-sm hover:bg-roast-50 sm:block">登入</RouterLink>
+            <RouterLink :to="{ name: 'register' }" class="btn-primary hidden px-4! py-2! sm:inline-flex">註冊</RouterLink>
+          </template>
+        </template>
+      </div>
     </div>
 
     <!-- 手機版選單 -->
@@ -57,6 +87,16 @@ watch(() => route.fullPath, () => (menuOpen.value = false))
             <RouterLink :to="link.to" class="block rounded-xl px-3 py-3 hover:bg-roast-50" exact-active-class="font-medium text-roast-700">
               {{ link.label }}
             </RouterLink>
+          </li>
+          <li class="mt-2 border-t border-roast-100 pt-2">
+            <template v-if="auth.isLoggedIn">
+              <p class="px-3 py-2 text-sm text-roast-500">嗨，{{ auth.user.name }}</p>
+              <button type="button" class="w-full cursor-pointer rounded-xl px-3 py-3 text-left hover:bg-roast-50" @click="logout">登出</button>
+            </template>
+            <div v-else class="flex gap-2 px-3 py-2">
+              <RouterLink :to="{ name: 'login' }" class="btn-outline flex-1">登入</RouterLink>
+              <RouterLink :to="{ name: 'register' }" class="btn-primary flex-1">註冊</RouterLink>
+            </div>
           </li>
         </ul>
       </nav>
