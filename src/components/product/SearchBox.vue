@@ -18,7 +18,7 @@ function clear() {
 
 <template>
   <search>
-    <form class="relative" role="search" @submit.prevent="submit">
+    <form class="relative" @submit.prevent="submit">
       <label for="product-search" class="sr-only">搜尋商品</label>
       <BaseIcon name="search" size="size-4" class="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-roast-300" />
       <input
