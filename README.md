@@ -6,7 +6,7 @@
 - **後端 API**：https://bakeday-backend.onrender.com（API 文件：https://bakeday-backend.onrender.com/api-docs）
 - **後端 Repo**：https://github.com/ModelS3XY/bakeday-backend
 
-> 後端部署在 Render 免費方案，閒置後第一次載入可能需要等待約 30–60 秒喚醒，畫面會顯示載入中。
+> 後端部署在 Render 免費方案（閒置 15 分鐘會休眠），已用 Cloudflare Workers Cron 每 12 分鐘呼叫 `/api/health` 保持喚醒；若仍遇到第一次載入較慢（約 30–60 秒），畫面會顯示載入中，請稍候。
 
 ## 測試帳號
 
