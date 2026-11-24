@@ -13,7 +13,7 @@
 | 角色 | Email | 密碼 |
 | --- | --- | --- |
 | 一般會員 | `user@bakeday.test` | `user12345` |
-| 管理員 | `admin@bakeday.test` | `<部署時設定的 ADMIN_PASSWORD>` |
+| 管理員 | `admin@bakeday.test` | `1q2w3e4r` |
 
 > 管理員的商品新增/編輯/刪除為 API 功能（依題目要求未製作後台頁面），請透過後端 `/api-docs` 測試。
 
