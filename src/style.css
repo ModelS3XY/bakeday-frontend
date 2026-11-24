@@ -36,8 +36,9 @@
 @utility btn-outline {
   @apply btn border border-roast-300 text-roast-700 hover:border-roast-700 hover:bg-roast-50;
 }
+/* 手機用 16px（text-base）：iOS Safari 在輸入框字級小於 16px 時，聚焦會自動放大整頁且不會縮回，造成畫面要左右滑 */
 @utility input {
-  @apply w-full rounded-xl border border-roast-100 bg-white px-4 py-2.5 text-sm transition placeholder:text-roast-300 focus:border-roast-500 focus:ring-2 focus:ring-roast-100 focus:outline-none;
+  @apply w-full rounded-xl border border-roast-100 bg-white px-4 py-2.5 text-base transition sm:text-sm placeholder:text-roast-300 focus:border-roast-500 focus:ring-2 focus:ring-roast-100 focus:outline-none;
 }
 @utility container-page {
   @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
