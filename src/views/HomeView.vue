@@ -38,7 +38,7 @@ const categoryCopy = {
 <template>
   <section class="relative overflow-hidden bg-roast-900 text-white" aria-labelledby="hero-title">
     <img
-      src="https://picsum.photos/seed/bakeday-hero/1600/900"
+      src="/images/hero.svg"
       alt=""
       class="absolute inset-0 size-full object-cover opacity-30"
       fetchpriority="high"
@@ -61,13 +61,13 @@ const categoryCopy = {
   <section class="container-page mt-14" aria-labelledby="cat-title">
     <h2 id="cat-title" class="text-xl font-bold sm:text-2xl">依分類選購</h2>
     <ul class="mt-5 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-      <li v-for="(c, i) in categories" :key="c._id">
+      <li v-for="c in categories" :key="c._id">
         <RouterLink
           :to="{ name: 'products', query: { category: c.slug } }"
           class="group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-latte"
         >
           <img
-            :src="`https://picsum.photos/seed/bakeday-cat-${i}/600/450`"
+            :src="`/images/products/${c.slug}-1.svg`"
             alt=""
             loading="lazy"
             class="size-full object-cover transition duration-500 group-hover:scale-105"

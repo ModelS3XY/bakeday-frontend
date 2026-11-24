@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+<defs><linearGradient id="artisan-1-crust" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c98a4b"/><stop offset="0.55" stop-color="#c98a4b"/><stop offset="1" stop-color="#a8642f"/></linearGradient></defs>
+<rect width="600" height="600" fill="#f6efe9"/><circle cx="300" cy="310" r="230" fill="#eadbcd"/>
+<g transform="rotate(-35 300 310)">
+<ellipse cx="300" cy="372" rx="250" ry="22" fill="#2e1d14" opacity="0.12"/>
+<path d="M58 312 C60 280 110 264 172 262 L428 262 C490 264 540 280 542 310 C540 340 490 356 428 358 L172 358 C110 356 60 344 58 312 Z" fill="url(#artisan-1-crust)"/>
+<path d="M80 296 C100 280 140 274 180 274 L420 274 C470 274 505 282 520 294 C480 288 440 288 420 288 L180 288 C140 288 110 290 80 296 Z" fill="#e8b878"/>
+<path d="M70 330 C110 348 150 350 180 350 L420 350 C470 350 510 342 534 322 C520 344 480 356 428 358 L172 358 C110 356 72 346 70 330 Z" fill="#7a4520" opacity="0.5"/>
+<path d="M80 316 Q120 282 162 296 Q120 304 80 316 Z" fill="#7a4520"/><path d="M86 316 Q120 294 158 300 Q120 310 86 316 Z" fill="#e8b878"/><path d="M165 312 Q205 278 247 292 Q205 300 165 312 Z" fill="#7a4520"/><path d="M171 312 Q205 290 243 296 Q205 306 171 312 Z" fill="#e8b878"/><path d="M250 310 Q290 276 332 290 Q290 298 250 310 Z" fill="#7a4520"/><path d="M256 310 Q290 288 328 294 Q290 304 256 310 Z" fill="#e8b878"/><path d="M335 310 Q375 276 417 290 Q375 298 335 310 Z" fill="#7a4520"/><path d="M341 310 Q375 288 413 294 Q375 304 341 310 Z" fill="#e8b878"/><path d="M420 314 Q460 280 502 294 Q460 302 420 314 Z" fill="#7a4520"/><path d="M426 314 Q460 292 498 298 Q460 308 426 314 Z" fill="#e8b878"/>
+</g>
+</svg>
