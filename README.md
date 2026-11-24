@@ -2,9 +2,9 @@
 
 手作麵包選物電商的前端，所有資料皆來自自行開發的後端 API（無假資料、無 JSON Server）。
 
-- **網站網址**：`https://<你的專案>.pages.dev`
-- **後端 API**：`https://<你的-render-網址>.onrender.com`（API 文件：`/api-docs`）
-- **後端 Repo**：`<後端 repo 網址>`
+- **網站網址**：https://bakeday.pages.dev
+- **後端 API**：https://bakeday-backend.onrender.com（API 文件：https://bakeday-backend.onrender.com/api-docs）
+- **後端 Repo**：https://github.com/ModelS3XY/bakeday-backend
 
 > 後端部署在 Render 免費方案，閒置後第一次載入可能需要等待約 30–60 秒喚醒，畫面會顯示載入中。
 
