@@ -19,6 +19,11 @@
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-roast-500;
   }
+  /* Chrome / Safari 會替 type="search" 加上原生清除鈕，和搜尋框自訂的清除鈕重複，隱藏原生的 */
+  input[type='search']::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
 }
 
 /* Tailwind v4 用 @utility 定義可重複使用的樣式組合 */
