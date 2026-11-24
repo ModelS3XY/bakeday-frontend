@@ -24,8 +24,9 @@ export const useAuthStore = defineStore('auth', () => {
       if (token.value) {
         try {
           user.value = await authApi.me()
-        } catch {
-          clear() // token 過期或無效
+        } catch (e) {
+          // 只有 401（token 過期或無效）才登出；網路錯誤或後端冷啟動逾時不代表 token 失效，保留登入狀態
+          if (e.status === 401) clear()
         }
       }
       ready.value = true

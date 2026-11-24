@@ -13,6 +13,7 @@ export function useAddToCart() {
   const route = useRoute()
 
   return async function addToCart(product, qty = 1) {
+    await auth.init() // 重新整理後登入狀態還在確認中時，先等確認完，避免把已登入的人當成未登入
     if (!auth.isLoggedIn) {
       toast.info('請先登入會員才能加入購物車')
       router.push({ name: 'login', query: { redirect: route.fullPath } })

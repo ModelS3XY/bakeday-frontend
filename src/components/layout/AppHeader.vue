@@ -28,7 +28,8 @@ function logout() {
   router.push({ name: 'home' })
 }
 
-function openCart() {
+async function openCart() {
+  await auth.init() // 同 useAddToCart：等登入狀態確認完再判斷
   if (!auth.isLoggedIn) {
     toast.info('請先登入會員才能查看購物車')
     router.push({ name: 'login', query: { redirect: route.fullPath } })
@@ -77,7 +78,7 @@ function openCart() {
           <template v-if="auth.isLoggedIn">
             <span class="hidden items-center gap-1.5 text-sm text-roast-700 sm:flex">
               <BaseIcon name="user" size="size-4" />
-              {{ auth.user.name }}
+              <span class="max-w-32 truncate">{{ auth.user.name }}</span>
               <span v-if="auth.user.role === 'admin'" class="rounded bg-roast-700 px-1.5 py-0.5 text-[10px] text-white">管理員</span>
             </span>
             <button type="button" class="hidden cursor-pointer rounded-full px-3 py-2 text-sm text-roast-500 hover:bg-roast-50 hover:text-roast-900 sm:block" @click="logout">
